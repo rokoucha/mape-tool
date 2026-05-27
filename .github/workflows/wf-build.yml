@@ -52,6 +52,7 @@ jobs:
       - name: Build
         run: go build -trimpath -ldflags="-s -w" -o "./${OUTPUT_NAME}" ./cmd/mape-tool
         env:
+          CGO_ENABLED: "0"
           GOARCH: ${{ matrix.GOARCH }}
           GOOS: ${{ matrix.GOOS }}
           OUTPUT_NAME: mape-tool-${{ matrix.GOOS }}-${{ matrix.GOARCH }}

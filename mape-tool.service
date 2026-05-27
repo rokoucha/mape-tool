@@ -1,0 +1,16 @@
+[Unit]
+Description=MAP-E tunnel and nftables configuration
+PartOf=systemd-networkd.service nftables.service
+Wants=network-online.target
+After=snetwork-online.target nftables.service systemd-networkd.service
+
+[Service]
+ExecStart=mape-tool apply
+RemainAfterExit=true
+Restart=on-failure
+RestartSec=5s
+StartLimitIntervalSec=0
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
